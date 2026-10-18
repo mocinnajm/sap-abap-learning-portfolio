@@ -35,7 +35,12 @@ My goal is to understand the fundamentals, write clean code, and build practical
 
 I created the class `ZCL_HOLA_MUNDOO`, which contains a method that returns a greeting. I also created `ZCL_MOHCINE_RUN` to execute the example in Eclipse ADT and display the result.
 
-**Status:** Initial exercise completed in the SAP environment. Source code publication is the next step.
+**Status:** Completed and published to GitHub.
+
+**Implemented:**
+- A greeting method that returns a string.
+- A method that returns an integer.
+- A runner class using `IF_OO_ADT_CLASSRUN` to execute the example and display the results in Eclipse ADT.
 
 ## My approach
 
