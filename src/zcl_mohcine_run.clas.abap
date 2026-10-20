@@ -29,6 +29,21 @@ CLASS zcl_mohcine_run IMPLEMENTATION.
   out->write( lo_calculator->calculate_total( ) ).
 
   out->write( has_discount ).
+  DATA(lo_products) = NEW zcl_mohcine_product_list( ).
+
+DATA(ls_product) = lo_products->get_product( ).
+DATA(lt_products) = lo_products->get_products( ).
+DATA(total_value) = 0.
+
+LOOP AT lt_products INTO DATA(ls_product_item).
+total_value = total_value
+  + ( ls_product_item-price * ls_product_item-quantity ).
+  out->write( ls_product_item-name ).
+  out->write( ls_product_item-price ).
+  out->write( ls_product_item-quantity ).
+ENDLOOP.
+out->write( total_value ).
+
 
 
 ENDMETHOD.
