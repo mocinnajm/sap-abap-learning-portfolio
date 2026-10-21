@@ -77,7 +77,14 @@ DATA(price_valid) = lo_price_validation->is_price_valid(
 ).
 
 out->write( price_valid ).
+DATA(lo_order_validation) = NEW zcl_mohcine_order_validation( ).
 
+DATA(order_valid) = lo_order_validation->is_order_valid(
+  quantity = 4
+  price    = 0
+).
+
+out->write( order_valid ).
 
 ENDMETHOD.
 ENDCLASS.
