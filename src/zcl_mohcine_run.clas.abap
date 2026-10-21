@@ -62,7 +62,21 @@ DATA(total) = loo_calculator->calculate_total(
 ).
 
 out->write( |El precio total de los productos es : { total }| ).
+DATA(lo_validation) = NEW zcl_mohcine_validation( ).
 
+DATA(is_valid) = lo_validation->is_quantity_valid(
+  quantity = 5
+
+).
+
+out->write( is_valid ).
+DATA(lo_price_validation) = NEW zcl_mohcine_price_validation( ).
+
+DATA(price_valid) = lo_price_validation->is_price_valid(
+  price = 0
+).
+
+out->write( price_valid ).
 
 
 ENDMETHOD.
