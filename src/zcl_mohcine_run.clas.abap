@@ -54,6 +54,16 @@ out->write( total_value ).
 out->write( |Valor de productos caros: { total_filtered }| ).
 
 
+DATA(loo_calculator) = NEW zcl_mohcine_calculator( ).
+
+DATA(total) = loo_calculator->calculate_total(
+  price    = 150
+  quantity = 4
+).
+
+out->write( |El precio total de los productos es : { total }| ).
+
+
 
 ENDMETHOD.
 ENDCLASS.
