@@ -85,6 +85,21 @@ DATA(order_valid) = lo_order_validation->is_order_valid(
 ).
 
 out->write( order_valid ).
+DATA(lo_order_service) = NEW zcl_mohcine_order_service( ).
+
+DATA(orderr_valid) = lo_order_service->validate_order(
+  quantity = 0
+  price    = 100
+).
+out->write( |Aqui esta la ultima x o el ultimo resultado : { orderr_valid }| ).
+DATA(order_zero_price) = lo_order_service->validate_order(
+  quantity = 1
+  price    = 0
+).
+
+out->write(
+  |Pedido con precio cero: { order_zero_price }|
+).
 
 ENDMETHOD.
 ENDCLASS.
