@@ -100,6 +100,23 @@ DATA(order_zero_price) = lo_order_service->validate_order(
 out->write(
   |Pedido con precio cero: { order_zero_price }|
 ).
+DATA(lo_order_messages) =
+  NEW zcl_mohcine_order_messages( ).
+
+DATA order_is_valid TYPE abap_bool.
+DATA order_message TYPE string.
+
+lo_order_messages->validate_order(
+  EXPORTING
+    quantity = 5
+    price    = 100
+  IMPORTING
+    is_valid = order_is_valid
+    message  = order_message
+).
+
+out->write( |Valid: { order_is_valid }| ).
+out->write( |Message: { order_message }| ).
 
 ENDMETHOD.
 ENDCLASS.
