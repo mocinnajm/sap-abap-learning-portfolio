@@ -38,6 +38,55 @@ LOOP AT products INTO DATA(product).
   out->write( |Project 12 - Total inventory value: { total_price }| ).
 
 ENDLOOP.
+out->write( |--- Project 13: Products over 100 ---| ).
+
+LOOP AT products INTO DATA(filtered_product).
+
+  IF filtered_product-price > 100.
+
+    out->write(
+      |Product: { filtered_product-name }, Price: { filtered_product-price }|
+    ).
+
+  ENDIF.
+
+ENDLOOP.
+out->write( |--- Project 13: Search Laptop ---| ).
+
+LOOP AT products INTO DATA(searched_product).
+
+  IF searched_product-name = 'Laptop'.
+
+    out->write(
+      |Found product: { searched_product-name }, Price: { searched_product-price }|
+    ).
+
+  ENDIF.
+
+ENDLOOP.
+out->write( |--- Project 13: Search Tablet ---| ).
+
+DATA found TYPE abap_bool VALUE abap_false.
+
+LOOP AT products INTO DATA(tablet_product).
+
+  IF tablet_product-name = 'Tablet'.
+
+    found = abap_true.
+
+    out->write(
+      |Product found: { tablet_product-name }, Price: { tablet_product-price }|
+    ).
+
+  ENDIF.
+
+ENDLOOP.
+
+IF found = abap_true.
+  out->write( |Search completed successfully.| ).
+ELSE.
+  out->write( |Product not found: Tablet| ).
+ENDIF.
 
 
 
