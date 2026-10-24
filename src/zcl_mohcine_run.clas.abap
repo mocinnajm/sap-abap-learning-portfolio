@@ -14,8 +14,32 @@ ENDCLASS.
 
 CLASS zcl_mohcine_run IMPLEMENTATION.
 
-
   METHOD if_oo_adt_classrun~main.
+  TYPES: BEGIN OF ty_product,
+         name  TYPE string,
+         price TYPE i,
+       END OF ty_product.
+ DATA products TYPE STANDARD TABLE OF ty_product WITH EMPTY KEY.
+ DATA total_price TYPE i VALUE 0.
+ APPEND VALUE #(
+  name  = 'Monitor'
+  price = 150
+) TO products.
+APPEND VALUE #(
+  name  = 'Laptop'
+  price = 800
+) TO products.
+LOOP AT products INTO DATA(product).
+
+  out->write(
+    |Project 12 - Product: { product-name }, Price: { product-price }|
+  ).
+  total_price = total_price + product-price.
+  out->write( |Project 12 - Total inventory value: { total_price }| ).
+
+ENDLOOP.
+
+
 
   DATA(lo_hello) = NEW zcl_hola_mundoo( ).
   DATA(lo_calculator) = NEW ZCL_MOHCINE_ORDER_CALC(  ).
