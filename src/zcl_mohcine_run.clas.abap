@@ -87,7 +87,19 @@ IF found = abap_true.
 ELSE.
   out->write( |Product not found: Tablet| ).
 ENDIF.
+out->write( |--- Project 14: Sort by price ---| ).
 
+out->write( |--- Project 14: Sort by multiple fields ---| ).
+
+SORT products BY price ASCENDING name ASCENDING.
+
+LOOP AT products INTO DATA(sorted_product).
+
+  out->write(
+    |Product: { sorted_product-name }, Price: { sorted_product-price }|
+  ).
+
+ENDLOOP.
 
 
   DATA(lo_hello) = NEW zcl_hola_mundoo( ).
